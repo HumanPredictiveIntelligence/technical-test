@@ -1,0 +1,25 @@
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: database_root_pwd
+      MYSQL_DATABASE: database
+      MYSQL_USER: database_user
+      MYSQL_PASSWORD: database_password
+    tmpfs:
+      - /var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  php:
+    image: bitnami/laravel:latest
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USERNAME: database_user
+      DB_PASSWORD: database_password
+      DB_DATABASE: database
+    volumes:
+      - ./app:/app
+    ports:
+        - "8000:8000"
