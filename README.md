@@ -1,6 +1,8 @@
 ## Run the stack
 
-```docker compose up -d```
+```cp app/.env.example app/.env```  
+```docker compose run php composer install```  
+```docker compose up -d```  
 Database is running on port 3306.
 Credentials are located in docker-compose.yml
 
